@@ -669,7 +669,7 @@ CONTENT PILLARS (every post must map to one):
 03 Behind the Build — humanity, building Gumptious honestly. LinkedIn Fri, IG Single/Story Fri.
 
 VOICE (non-negotiable):
-- Sharp, warm, direct. Never corporate.
+- Sharp, warm, direct. Never corporate. Write contractions in full (do not, you are, it is, that is) since this is required for the JSON output format.
 - No em dashes. Use commas or periods instead.
 - Banned words: leverage, synergy, ecosystem, thrilled, excited to announce, hustle
 - First line must stop the scroll. Specific, surprising, or punchy.
@@ -697,7 +697,11 @@ ${vaultContext || 'No previous content yet.'}
 
 ${isMonth ? `Generate ONE FULL MONTH of content (4 weeks). For each week, also weave in a reference or resurface from the vault where relevant.` : `Generate ONE WEEK of content.`}
 
-Return ONLY valid JSON. No preamble, no markdown fences. Use double quotes only. Escape any apostrophes in text as \' and any internal double quotes as \". Use this exact structure${isMonth ? ' as an array of 4 week objects' : ''}:
+Return your response as a JSON object. CRITICAL JSON RULES:
+- Use only double quotes for strings
+- Never use apostrophes inside text values - write "do not" instead of "don't", "you are" instead of "you're", "it is" instead of "it's", "that is" instead of "that's", "I am" instead of "I'm", "we are" instead of "we're"
+- No line breaks inside string values - use \n instead
+- No unescaped special characters Use this exact structure${isMonth ? ' as an array of 4 week objects' : ''}:
 
 ${isMonth ? `[
   {
@@ -754,7 +758,18 @@ ${isMonth ? `[
     const lastBracket = clean.lastIndexOf(']');
     const endIdx = Math.max(lastBrace, lastBracket);
     if (endIdx !== -1) clean = clean.slice(0, endIdx + 1);
-    const parsed = JSON.parse(clean);
+    // Fix unescaped apostrophes inside JSON string values
+    // Replace apostrophes that are inside JSON strings
+    clean = clean.replace(/"([^"]*)"/g, (match) => {
+      return match.replace(/(?<!\\)'/g, "\\'");
+    });
+    let parsed;
+    try {
+      parsed = JSON.parse(clean);
+    } catch(e) {
+      // Last resort: try to extract just text values with regex
+      throw new Error('Could not parse response. Try with a shorter piece of content.');
+    }
     currentOutput = parsed;
     renderOutput(parsed, isMonth, title);
   } catch (err) {
