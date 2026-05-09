@@ -64,12 +64,10 @@
     margin-bottom: 14px;
   }
 
-  /* TABS */
   .tabs {
     display: flex;
-    gap: 0;
-    margin-bottom: 36px;
     border-bottom: 1px solid var(--mist);
+    margin-bottom: 36px;
   }
 
   .tab-btn {
@@ -93,22 +91,12 @@
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
 
-  /* CARDS */
   .card {
     background: var(--white);
     padding: 28px;
     margin-bottom: 16px;
   }
 
-  .card h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 19px;
-    font-weight: 500;
-    color: var(--ink);
-    margin-bottom: 14px;
-  }
-
-  /* FORM ELEMENTS */
   input[type="text"], select, textarea {
     width: 100%;
     border: 1px solid var(--mist);
@@ -123,12 +111,10 @@
   }
 
   input:focus, select:focus, textarea:focus { border-color: var(--slate); }
-
-  textarea { height: 140px; resize: vertical; line-height: 1.6; margin-bottom: 0; }
+  textarea { height: 160px; resize: vertical; line-height: 1.6; margin-bottom: 0; }
 
   .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
-  /* BUTTONS */
   .btn-primary {
     width: 100%;
     background: var(--earth);
@@ -138,7 +124,6 @@
     padding: 16px;
     border: none;
     cursor: pointer;
-    letter-spacing: 0.03em;
     transition: opacity 0.15s;
     margin-top: 4px;
   }
@@ -155,11 +140,7 @@
     padding: 9px 18px;
     border: none;
     cursor: pointer;
-    letter-spacing: 0.05em;
-    transition: opacity 0.15s;
   }
-
-  .btn-secondary:hover { opacity: 0.8; }
 
   .btn-ghost {
     background: none;
@@ -169,24 +150,47 @@
     padding: 5px 11px;
     border: 1px solid var(--mist);
     cursor: pointer;
-    transition: background 0.15s;
   }
 
   .btn-ghost:hover { background: var(--blush); }
   .btn-ghost.danger { color: #a33; border-color: rgba(170,50,50,0.3); }
 
-  /* STATUS */
-  .status {
-    background: var(--earth);
-    color: var(--white);
-    font-size: 13px;
-    padding: 13px 20px;
-    margin-bottom: 20px;
+  /* PROGRESS */
+  .progress-bar {
     display: none;
-    letter-spacing: 0.03em;
+    background: var(--white);
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    border-left: 3px solid var(--earth);
   }
 
-  .status.visible { display: block; }
+  .progress-bar.visible { display: block; }
+
+  .progress-label {
+    font-size: 13px;
+    color: var(--slate);
+    margin-bottom: 10px;
+  }
+
+  .progress-track {
+    background: var(--mist);
+    height: 3px;
+    width: 100%;
+  }
+
+  .progress-fill {
+    background: var(--earth);
+    height: 3px;
+    width: 0%;
+    transition: width 0.4s ease;
+  }
+
+  .progress-step {
+    font-size: 11px;
+    color: var(--sage);
+    margin-top: 8px;
+    letter-spacing: 0.05em;
+  }
 
   .error {
     background: #fff0eb;
@@ -195,39 +199,9 @@
     font-size: 13px;
     padding: 16px 20px;
     margin-bottom: 20px;
-    line-height: 1.5;
   }
 
-  /* PILLAR TAGS */
-  .pillar-tag {
-    display: inline-block;
-    font-size: 9px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 3px 8px;
-    margin-bottom: 8px;
-  }
-
-  .pillar-tag.expert { background: #F5EDE7; color: var(--earth); }
-  .pillar-tag.reality { background: #E8F0F2; color: var(--slate); }
-  .pillar-tag.build { background: #EBF0F2; color: #2d4a55; }
-
-  .platform-tag {
-    display: inline-block;
-    font-size: 9px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 3px 8px;
-    margin-bottom: 8px;
-    margin-left: 6px;
-  }
-
-  .platform-tag.linkedin { background: #e8eef5; color: #0077b5; }
-  .platform-tag.instagram { background: #f5e8f0; color: #833AB4; }
-
-  /* OUTPUT POSTS */
+  /* OUTPUT */
   .output-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -239,19 +213,19 @@
     background: var(--white);
     padding: 20px;
     border-top: 3px solid var(--mist);
-    position: relative;
   }
 
   .post-card.expert { border-top-color: var(--earth); }
   .post-card.reality { border-top-color: var(--sage); }
   .post-card.build { border-top-color: var(--slate); }
+  .post-card.loading { opacity: 0.5; }
 
   .post-meta {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
     flex-wrap: wrap;
     gap: 4px;
+    margin-bottom: 10px;
   }
 
   .post-day {
@@ -260,16 +234,33 @@
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--sage);
-    margin-right: 6px;
+    margin-right: 4px;
   }
 
-  .post-text {
-    font-size: 13px;
-    line-height: 1.65;
-    color: var(--ink);
-    white-space: pre-wrap;
-    word-break: break-word;
+  .pillar-tag {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
   }
+
+  .pillar-tag.expert { background: #F5EDE7; color: var(--earth); }
+  .pillar-tag.reality { background: #E8F0F2; color: var(--slate); }
+  .pillar-tag.build { background: #EBF0F2; color: #2d4a55; }
+
+  .platform-tag {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+  }
+
+  .platform-tag.linkedin { background: #e8eef5; color: #0077b5; }
+  .platform-tag.instagram { background: #f5e8f0; color: #833AB4; }
 
   .format-brief {
     font-size: 11px;
@@ -281,7 +272,34 @@
     line-height: 1.4;
   }
 
-  .post-actions { margin-top: 12px; display: flex; gap: 8px; }
+  .post-text {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--ink);
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .post-actions { margin-top: 12px; }
+
+  .loading-text {
+    font-size: 13px;
+    color: var(--sage);
+    font-style: italic;
+    padding: 20px 0;
+  }
+
+  .week-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--ink);
+    margin-bottom: 16px;
+    margin-top: 32px;
+  }
+
+  .week-heading:first-child { margin-top: 0; }
+  .week-heading em { font-style: italic; color: var(--earth); }
 
   /* VAULT */
   .vault-controls {
@@ -292,12 +310,7 @@
     align-items: center;
   }
 
-  .vault-controls input {
-    flex: 1;
-    min-width: 180px;
-    margin-bottom: 0;
-  }
-
+  .vault-controls input { flex: 1; min-width: 180px; margin-bottom: 0; }
   .vault-controls select { width: auto; margin-bottom: 0; }
 
   table { width: 100%; border-collapse: collapse; background: var(--white); }
@@ -336,7 +349,6 @@
   .empty-state {
     text-align: center;
     padding: 56px 20px;
-    color: var(--sage);
   }
 
   .empty-state p {
@@ -347,7 +359,8 @@
     margin-bottom: 6px;
   }
 
-  /* MODAL */
+  .empty-state small { font-size: 13px; color: var(--sage); }
+
   .overlay {
     display: none;
     position: fixed;
@@ -389,11 +402,7 @@
     margin-bottom: 7px;
   }
 
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    margin-bottom: 0;
-  }
+  .form-group input, .form-group select, .form-group textarea { margin-bottom: 0; }
 
   .modal-actions { display: flex; gap: 10px; margin-top: 24px; }
   .modal-actions .btn-primary { font-size: 17px; padding: 13px; }
@@ -408,16 +417,6 @@
     display: flex;
     justify-content: space-between;
   }
-
-  .week-heading {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    font-weight: 300;
-    color: var(--ink);
-    margin-bottom: 20px;
-  }
-
-  .week-heading em { font-style: italic; color: var(--earth); }
 </style>
 </head>
 <body>
@@ -478,7 +477,12 @@
       <button class="btn-primary" id="gen-btn" onclick="generate()">Generate Content →</button>
     </div>
 
-    <div class="status" id="status">Generating your content — takes about 20 seconds...</div>
+    <div class="progress-bar" id="progress-bar">
+      <div class="progress-label">Generating your content...</div>
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+      <div class="progress-step" id="progress-step">Starting...</div>
+    </div>
+
     <div id="error-area"></div>
     <div id="output-area"></div>
 
@@ -486,7 +490,6 @@
 
   <!-- VAULT -->
   <div class="tab-panel" id="tab-vault">
-
     <div class="vault-controls">
       <input type="text" id="vault-search" placeholder="Search..." oninput="renderVault()">
       <select id="vault-type-filter" onchange="renderVault()" style="width:auto;margin-bottom:0">
@@ -502,9 +505,7 @@
       </select>
       <button class="btn-secondary" onclick="openModal()">+ Add Content</button>
     </div>
-
     <div id="vault-table"></div>
-
   </div>
 
 </div>
@@ -547,12 +548,16 @@
   </div>
 </div>
 
+<footer>
+  <span>Gumptious Design Shop — Content Engine</span>
+  <span>3× LinkedIn · 3× Instagram · mapped to your pillars</span>
+</footer>
+
 <script>
 const PILLARS = { expert: '01 Expert Insight', reality: '02 Client Reality', build: '03 Behind the Build' };
 
 let vault = JSON.parse(localStorage.getItem('gumptious_vault') || '[]');
 let nextId = parseInt(localStorage.getItem('gumptious_nextid') || '1');
-let currentOutput = null;
 
 function saveVault() {
   localStorage.setItem('gumptious_vault', JSON.stringify(vault));
@@ -567,29 +572,24 @@ function switchTab(tab, btn) {
   if (tab === 'vault') renderVault();
 }
 
-// --- VAULT ---
+// VAULT
 function renderVault() {
   const search = (document.getElementById('vault-search').value || '').toLowerCase();
   const tf = document.getElementById('vault-type-filter').value;
   const pf = document.getElementById('vault-pillar-filter').value;
-
   let items = vault.filter(v => {
     if (search && !v.title.toLowerCase().includes(search)) return false;
     if (tf !== 'all' && v.type !== tf) return false;
     if (pf !== 'all' && v.pillar !== pf) return false;
     return true;
   });
-
   const container = document.getElementById('vault-table');
   if (!items.length) {
     container.innerHTML = `<div class="empty-state"><p>Nothing in the vault yet.</p><small>Add your blog posts and videos using the button above.</small></div>`;
     return;
   }
-
   container.innerHTML = `<table>
-    <thead><tr>
-      <th>Title</th><th>Type</th><th>Pillar</th><th>Date</th><th></th>
-    </tr></thead>
+    <thead><tr><th>Title</th><th>Type</th><th>Pillar</th><th>Date</th><th></th></tr></thead>
     <tbody>${items.map(v => `<tr>
       <td style="font-weight:500">${v.title}</td>
       <td><span class="type-badge ${v.type}">${v.type === 'youtube' ? 'Video' : 'Blog'}</span></td>
@@ -603,38 +603,86 @@ function renderVault() {
 function removeItem(id) {
   if (!confirm('Remove this item?')) return;
   vault = vault.filter(v => v.id !== id);
-  saveVault();
-  renderVault();
+  saveVault(); renderVault();
 }
 
-function openModal() {
-  document.getElementById('overlay').classList.add('open');
-}
-
+function openModal() { document.getElementById('overlay').classList.add('open'); }
 function closeModal() {
   document.getElementById('overlay').classList.remove('open');
   ['m-title','m-date','m-content'].forEach(id => document.getElementById(id).value = '');
-  document.getElementById('m-type').value = 'youtube';
-  document.getElementById('m-pillar').value = 'expert';
 }
 
 function saveToVault() {
   const title = document.getElementById('m-title').value.trim();
   if (!title) { alert('Please enter a title.'); return; }
-  vault.unshift({
-    id: nextId++,
-    title,
-    type: document.getElementById('m-type').value,
-    pillar: document.getElementById('m-pillar').value,
-    date: document.getElementById('m-date').value || '',
-    content: document.getElementById('m-content').value
-  });
-  saveVault();
-  closeModal();
-  renderVault();
+  vault.unshift({ id: nextId++, title, type: document.getElementById('m-type').value, pillar: document.getElementById('m-pillar').value, date: document.getElementById('m-date').value || '', content: document.getElementById('m-content').value });
+  saveVault(); closeModal(); renderVault();
 }
 
-// --- GENERATE ---
+// GENERATE
+const VOICE = `You are writing social media content for Maria Fakhruddin, founder of Gumptious Design Shop. She helps women founders build premium service businesses through intentional design and brand identity.
+
+VOICE RULES (non-negotiable):
+- Sharp, warm, direct. Never corporate.
+- No em dashes. Use commas or periods instead.
+- Banned words: leverage, synergy, ecosystem, thrilled, excited to announce, hustle
+- First line must stop the scroll. Specific, surprising, or punchy.
+- Short paragraphs, 1 to 3 sentences max.
+- End LinkedIn posts with a soft CTA: "If your site is the bottleneck, I do quick audit calls. Book yours at gumptiousdesignshop.com/audit"
+- Instagram posts end with exactly 5 hashtags, no more no less.`;
+
+const POSTS = [
+  { key: 'monday_linkedin', day: 'Monday', platform: 'linkedin', pillar: 'expert', label: '01 Expert Insight', format: null,
+    instruction: 'Write a LinkedIn post (150-200 words). Pillar: 01 Expert Insight. Authority angle. Counterintuitive design or positioning observation. No carousel, this is a text post.' },
+  { key: 'tuesday_instagram', day: 'Tuesday', platform: 'instagram', pillar: 'expert', label: '01 Expert Insight', format: 'CAROUSEL: 6-8 slides. Slide 1 = hook (1 bold statement). Slides 2-6 = one idea per slide, minimal text. Last slide = soft CTA. Write the caption only (3-4 sentences + 5 hashtags). Note the slide breakdown above the caption.',
+    instruction: 'Write an Instagram carousel caption (3-4 sentences + 5 hashtags). Pillar: 01 Expert Insight. Different angle from the Monday LinkedIn post. More visual and casual. Start with a brief slide breakdown (Slide 1: ..., Slide 2: ... etc), then write CAPTION: followed by the actual caption.' },
+  { key: 'wednesday_linkedin', day: 'Wednesday', platform: 'linkedin', pillar: null, label: null, format: null,
+    instruction: 'Write a LinkedIn post (80-120 words) as a caption for a native video upload. This is a short, punchy caption that introduces a client tension or behind-the-scenes moment. No long paragraphs.' },
+  { key: 'thursday_instagram', day: 'Thursday', platform: 'instagram', pillar: 'reality', label: '02 Client Reality', format: 'TALKING HEAD REEL: Film yourself speaking to camera, casual, 30-60 seconds, no script needed. Write the caption only.',
+    instruction: 'Write an Instagram Reel caption (2-3 sentences + 5 hashtags). Pillar: 02 Client Reality. Casual, conversational. The gap between what clients think they need and what actually moves them. Start with FORMAT BRIEF: Talking head reel, 30-60 seconds, casual to camera. Then write CAPTION: followed by the caption.' },
+  { key: 'friday_linkedin', day: 'Friday', platform: 'linkedin', pillar: 'build', label: '03 Behind the Build', format: null,
+    instruction: 'Write a LinkedIn post (150-200 words). Pillar: 03 Behind the Build. A real, human moment from building Gumptious this week. Honest, warm, no performance.' },
+  { key: 'friday_instagram', day: 'Friday', platform: 'instagram', pillar: 'build', label: '03 Behind the Build', format: 'B-ROLL + TEXT OVERLAY: Film a real moment (desk, process, thinking). Text overlay carries the message. Write the caption only.',
+    instruction: 'Write an Instagram single image caption (2-3 sentences + 5 hashtags). Pillar: 03 Behind the Build. Warm, candid, low effort. Start with FORMAT BRIEF: B-roll or single image, text overlay carries the message. Then write CAPTION: followed by the caption.' },
+];
+
+function setProgress(pct, step) {
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-step').textContent = step;
+}
+
+async function callAPI(prompt) {
+  const response = await fetch('/api/generate', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ prompt })
+  });
+  const data = await response.json();
+  if (data.error) throw new Error(data.error);
+  return data.text;
+}
+
+async function generateOnePost(post, sourceTitle, sourceType, sourcePillar, sourceContent, wedPillar) {
+  const pillar = post.key === 'wednesday_linkedin' ? wedPillar : post.pillar;
+  const pillarLabel = post.key === 'wednesday_linkedin' ? PILLARS[wedPillar] : post.label;
+
+  const prompt = `${VOICE}
+
+SOURCE MATERIAL:
+Title: ${sourceTitle || 'Untitled'}
+Type: ${sourceType === 'youtube' ? 'YouTube Video' : 'Blog Post'}
+Primary Pillar: ${PILLARS[sourcePillar]}
+
+${sourceContent}
+
+TASK: ${post.instruction}
+${post.key === 'wednesday_linkedin' ? `This week Wednesday pillar is: ${PILLARS[wedPillar]}` : ''}
+
+Write ONLY the post content. No preamble, no "Here is your post:", no explanations. Just the post itself.`;
+
+  return await callAPI(prompt);
+}
+
 async function generate() {
   const title = document.getElementById('title').value.trim();
   const content = document.getElementById('source-content').value.trim();
@@ -642,10 +690,11 @@ async function generate() {
   const pillar = document.getElementById('pillar').value;
   const scope = document.getElementById('output-scope').value;
   const wedRotation = document.getElementById('wed-rotation').value;
+  const isMonth = scope === 'month';
 
   if (!content) { alert('Paste some source material first.'); return; }
 
-  // Save to vault automatically
+  // Save to vault
   if (title) {
     const exists = vault.find(v => v.title.toLowerCase() === title.toLowerCase());
     if (!exists) {
@@ -654,191 +703,123 @@ async function generate() {
     }
   }
 
-  // Build vault context for resurfacing
-  const vaultContext = vault.slice(0, 10).map(v => `- ${v.title} (${v.type === 'youtube' ? 'Video' : 'Blog'}, ${PILLARS[v.pillar]})`).join('\n');
-
-  const isMonth = scope === 'month';
-  const wedLabel = wedRotation === 'reality' ? '02 Client Reality' : '03 Behind the Build';
-  const wedPillarKey = wedRotation;
-
-  const prompt = `You are a content strategist for Maria Fakhruddin, founder of Gumptious Design Shop. She helps women founders build premium service businesses through intentional design and brand identity.
-
-CONTENT PILLARS (every post must map to one):
-01 Expert Insight — authority, design/positioning observations, counterintuitive takes. LinkedIn Mon, IG Carousel Tue.
-02 Client Reality — proof, the gap between what clients think they need vs what moves them. LinkedIn Wed (rotating), IG Reel Thu.
-03 Behind the Build — humanity, building Gumptious honestly. LinkedIn Fri, IG Single/Story Fri.
-
-VOICE (non-negotiable):
-- Sharp, warm, direct. Never corporate. Write contractions in full (do not, you are, it is, that is) since this is required for the JSON output format.
-- No em dashes. Use commas or periods instead.
-- Banned words: leverage, synergy, ecosystem, thrilled, excited to announce, hustle
-- First line must stop the scroll. Specific, surprising, or punchy.
-- Short paragraphs — 1 to 3 sentences max.
-- LinkedIn and Instagram NEVER say the same thing. Different angle, different format, different tone.
-- Instagram is more casual, conversational, visual-first.
-- LinkedIn is authority-building, structured, professional but human.
-- End each LinkedIn post with a soft CTA to book an audit call at gumptiousdesignshop.com/audit
-- Every Instagram post must end with exactly 5 relevant hashtags. No more, no fewer.
-
-INSTAGRAM FORMAT BRIEFS (add a "format" field on every Instagram post, 1 sentence):
-- Tuesday (Expert Insight): Carousel. 6-8 slides, one idea per slide, strong hook on slide 1, soft CTA on last slide.
-- Thursday (Client Reality): Talking head Reel. Film yourself to camera, casual, 30-60 sec, subtitles on.
-- Friday (Behind the Build): B-roll + text overlay. Film a real moment, let the text carry the message.
-
-SOURCE MATERIAL:
-Title: ${title || 'Untitled'}
-Type: ${type === 'youtube' ? 'YouTube Video' : 'Blog Post'}
-Primary Pillar: ${PILLARS[pillar]}
-
-${content}
-
-EXISTING VAULT (for resurfacing older content):
-${vaultContext || 'No previous content yet.'}
-
-${isMonth ? `Generate ONE FULL MONTH of content (4 weeks). For each week, also weave in a reference or resurface from the vault where relevant.` : `Generate ONE WEEK of content.`}
-
-Return your response as a JSON object. CRITICAL JSON RULES:
-- Use only double quotes for strings
-- Never use apostrophes inside text values - write "do not" instead of "don't", "you are" instead of "you're", "it is" instead of "it's", "that is" instead of "that's", "I am" instead of "I'm", "we are" instead of "we're"
-- No line breaks inside string values - use \n instead
-- No unescaped special characters Use this exact structure${isMonth ? ' as an array of 4 week objects' : ''}:
-
-${isMonth ? `[
-  {
-    "week": 1,
-    "monday_linkedin": {"pillar": "expert", "platform": "linkedin", "day": "Monday", "text": "..."},
-    "tuesday_instagram": {"pillar": "expert", "platform": "instagram", "day": "Tuesday", "format": "...", "text": "..."},
-    "wednesday_linkedin": {"pillar": "${wedPillarKey}", "platform": "linkedin", "day": "Wednesday", "text": "..."},
-    "thursday_instagram": {"pillar": "reality", "platform": "instagram", "day": "Thursday", "format": "...", "text": "..."},
-    "friday_linkedin": {"pillar": "build", "platform": "linkedin", "day": "Friday", "text": "..."},
-    "friday_instagram": {"pillar": "build", "platform": "instagram", "day": "Friday", "format": "...", "text": "..."}
-  }
-]` : `{
-  "monday_linkedin": {"pillar": "expert", "platform": "linkedin", "day": "Monday", "text": "..."},
-  "tuesday_instagram": {"pillar": "expert", "platform": "instagram", "day": "Tuesday", "format": "...", "text": "..."},
-  "wednesday_linkedin": {"pillar": "${wedPillarKey}", "platform": "linkedin", "day": "Wednesday", "text": "..."},
-  "thursday_instagram": {"pillar": "reality", "platform": "instagram", "day": "Thursday", "format": "...", "text": "..."},
-  "friday_linkedin": {"pillar": "build", "platform": "linkedin", "day": "Friday", "text": "..."},
-  "friday_instagram": {"pillar": "build", "platform": "instagram", "day": "Friday", "format": "...", "text": "..."}
-}`}`;
-
   const btn = document.getElementById('gen-btn');
-  const status = document.getElementById('status');
+  const progressBar = document.getElementById('progress-bar');
   const errorArea = document.getElementById('error-area');
+  const outputArea = document.getElementById('output-area');
+
   btn.disabled = true;
-  status.classList.add('visible');
+  progressBar.classList.add('visible');
   errorArea.innerHTML = '';
-  document.getElementById('output-area').innerHTML = '';
+  outputArea.innerHTML = '';
+
+  const weeks = isMonth ? 4 : 1;
+  const totalCalls = weeks * POSTS.length;
+  let completed = 0;
+  let allWeeks = [];
 
   try {
-    const response = await fetch('/api/generate', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-5',
-        max_tokens: isMonth ? 8000 : 3000,
-        messages: [{ role: 'user', content: prompt }]
-      })
-    });
+    for (let w = 0; w < weeks; w++) {
+      const weekPosts = [];
+      // Alternate Wednesday pillar each week
+      const thisWedPillar = w % 2 === 0 ? wedRotation : (wedRotation === 'reality' ? 'build' : 'reality');
 
-    const data = await response.json();
-    if (data.error) throw new Error(data.error.message);
+      for (let p = 0; p < POSTS.length; p++) {
+        const post = POSTS[p];
+        setProgress(Math.round((completed / totalCalls) * 100), `Week ${w+1} — ${post.day} ${post.platform === 'linkedin' ? 'LinkedIn' : 'Instagram'}...`);
 
-    const raw = data.content.map(c => c.text || '').join('');
-    // Strip markdown fences
-    let clean = raw.replace(/^```json\s*/,'').replace(/^```\s*/,'').replace(/\s*```$/,'').trim();
-    // Find the JSON object/array boundaries and extract just that
-    const firstBrace = clean.indexOf('{');
-    const firstBracket = clean.indexOf('[');
-    let startIdx = -1;
-    if (firstBrace !== -1 && (firstBracket === -1 || firstBrace < firstBracket)) startIdx = firstBrace;
-    else if (firstBracket !== -1) startIdx = firstBracket;
-    if (startIdx > 0) clean = clean.slice(startIdx);
-    const lastBrace = clean.lastIndexOf('}');
-    const lastBracket = clean.lastIndexOf(']');
-    const endIdx = Math.max(lastBrace, lastBracket);
-    if (endIdx !== -1) clean = clean.slice(0, endIdx + 1);
-    // Fix unescaped apostrophes inside JSON string values
-    // Replace apostrophes that are inside JSON strings
-    clean = clean.replace(/"([^"]*)"/g, (match) => {
-      return match.replace(/(?<!\\)'/g, "\\'");
-    });
-    let parsed;
-    try {
-      parsed = JSON.parse(clean);
-    } catch(e) {
-      // Last resort: try to extract just text values with regex
-      throw new Error('Could not parse response. Try with a shorter piece of content.');
+        try {
+          const text = await generateOnePost(post, title, type, pillar, content, thisWedPillar);
+          const pillarKey = post.key === 'wednesday_linkedin' ? thisWedPillar : post.pillar;
+          weekPosts.push({ ...post, text, pillarKey, pillarLabel: post.key === 'wednesday_linkedin' ? PILLARS[thisWedPillar] : post.label });
+        } catch(err) {
+          weekPosts.push({ ...post, text: `Error generating this post: ${err.message}`, pillarKey: post.pillar || 'expert', pillarLabel: post.label || '' });
+        }
+
+        completed++;
+        // Small delay to avoid rate limiting
+        await new Promise(r => setTimeout(r, 300));
+      }
+      allWeeks.push(weekPosts);
     }
-    currentOutput = parsed;
-    renderOutput(parsed, isMonth, title);
-  } catch (err) {
-    errorArea.innerHTML = `<div class="error"><strong>Something went wrong.</strong> ${err.message}<br><small style="color:var(--sage);margin-top:4px;display:block">Try with shorter source material, or paste just the key sections.</small></div>`;
-  } finally {
-    btn.disabled = false;
-    status.classList.remove('visible');
+
+    setProgress(100, 'Done!');
+    setTimeout(() => progressBar.classList.remove('visible'), 1000);
+    renderOutput(allWeeks, title, isMonth);
+
+  } catch(err) {
+    progressBar.classList.remove('visible');
+    errorArea.innerHTML = `<div class="error"><strong>Something went wrong.</strong> ${err.message}</div>`;
   }
+
+  btn.disabled = false;
 }
 
-const POST_KEYS = ['monday_linkedin','tuesday_instagram','wednesday_linkedin','thursday_instagram','friday_linkedin','friday_instagram'];
+function parsePostContent(post) {
+  let text = post.text || '';
+  let formatBrief = post.format || null;
+  let caption = text;
 
-function renderOutput(data, isMonth, sourceTitle) {
-  const container = document.getElementById('output-area');
-
-  if (isMonth && Array.isArray(data)) {
-    container.innerHTML = data.map((week, i) => `
-      <div class="week-heading" style="margin-bottom:16px;margin-top:${i > 0 ? '36px' : '0'}">Week <em>${week.week || i+1}</em></div>
-      <div class="output-grid">${renderPostCards(week)}</div>
-    `).join('');
-  } else {
-    container.innerHTML = `
-      <div class="week-heading" style="margin-bottom:16px">This week${sourceTitle ? ' — <em>' + sourceTitle + '</em>' : ''}</div>
-      <div class="output-grid">${renderPostCards(data)}</div>
-    `;
+  // Extract format brief if embedded
+  if (text.includes('FORMAT BRIEF:')) {
+    const parts = text.split('CAPTION:');
+    if (parts.length > 1) {
+      const briefPart = parts[0].replace('FORMAT BRIEF:', '').trim();
+      formatBrief = briefPart;
+      caption = parts[1].trim();
+    }
   }
+
+  // Extract slide breakdown for carousels
+  if (text.includes('CAPTION:') && text.includes('Slide')) {
+    const parts = text.split('CAPTION:');
+    if (parts.length > 1) {
+      formatBrief = (post.format || '') + '\n\n' + parts[0].trim();
+      caption = parts[1].trim();
+    }
+  }
+
+  return { formatBrief, caption };
 }
 
-function renderPostCards(weekData) {
-  return POST_KEYS.map(key => {
-    const post = weekData[key];
-    if (!post) return '';
-    return `
-      <div class="post-card ${post.pillar}">
-        <div class="post-meta">
-          <span class="post-day">${post.day}</span>
-          <span class="pillar-tag ${post.pillar}">${PILLARS[post.pillar]}</span>
-          <span class="platform-tag ${post.platform}">${post.platform}</span>
-        </div>
-        ${post.format ? `<div class="format-brief">📐 ${escHtml(post.format)}</div>` : ''}
-        <div class="post-text">${escHtml(post.text)}</div>
-        <div class="post-actions">
-          <button class="btn-ghost" onclick="copyPost(this, '${escHtml(post.text)}')">Copy</button>
-        </div>
-      </div>
-    `;
-  }).join('');
+function renderOutput(allWeeks, sourceTitle, isMonth) {
+  const outputArea = document.getElementById('output-area');
+  outputArea.innerHTML = allWeeks.map((weekPosts, i) => `
+    <div class="week-heading">Week <em>${i + 1}</em>${sourceTitle && i === 0 ? ' — ' + sourceTitle : ''}</div>
+    <div class="output-grid">
+      ${weekPosts.map(post => {
+        const { formatBrief, caption } = parsePostContent(post);
+        return `
+          <div class="post-card ${post.pillarKey}">
+            <div class="post-meta">
+              <span class="post-day">${post.day}</span>
+              ${post.pillarLabel ? `<span class="pillar-tag ${post.pillarKey}">${post.pillarLabel}</span>` : ''}
+              <span class="platform-tag ${post.platform}">${post.platform}</span>
+            </div>
+            ${formatBrief ? `<div class="format-brief">📐 ${formatBrief.replace(/\n/g, '<br>')}</div>` : ''}
+            <div class="post-text">${escHtml(caption)}</div>
+            <div class="post-actions">
+              <button class="btn-ghost" onclick="copyText(this, ${JSON.stringify(caption)})">Copy</button>
+            </div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `).join('');
 }
 
 function escHtml(str) {
-  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
-function copyPost(btn, text) {
-  const decoded = text.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"');
-  navigator.clipboard.writeText(decoded).then(() => {
+function copyText(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
     btn.textContent = 'Copied!';
     setTimeout(() => btn.textContent = 'Copy', 2000);
   });
 }
 
-// Init
 renderVault();
 </script>
-
-<footer>
-  <span>Gumptious Design Shop — Content Engine</span>
-  <span>3× LinkedIn · 3× Instagram · mapped to your pillars</span>
-</footer>
-
 </body>
 </html>
