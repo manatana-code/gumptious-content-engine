@@ -697,7 +697,7 @@ ${vaultContext || 'No previous content yet.'}
 
 ${isMonth ? `Generate ONE FULL MONTH of content (4 weeks). For each week, also weave in a reference or resurface from the vault where relevant.` : `Generate ONE WEEK of content.`}
 
-Return ONLY valid JSON. No preamble, no markdown fences. Use this exact structure${isMonth ? ' as an array of 4 week objects' : ''}:
+Return ONLY valid JSON. No preamble, no markdown fences. Use double quotes only. Escape any apostrophes in text as \' and any internal double quotes as \". Use this exact structure${isMonth ? ' as an array of 4 week objects' : ''}:
 
 ${isMonth ? `[
   {
@@ -741,7 +741,19 @@ ${isMonth ? `[
     if (data.error) throw new Error(data.error.message);
 
     const raw = data.content.map(c => c.text || '').join('');
-    const clean = raw.replace(/^```json\s*/,'').replace(/\s*```$/,'').trim();
+    // Strip markdown fences
+    let clean = raw.replace(/^```json\s*/,'').replace(/^```\s*/,'').replace(/\s*```$/,'').trim();
+    // Find the JSON object/array boundaries and extract just that
+    const firstBrace = clean.indexOf('{');
+    const firstBracket = clean.indexOf('[');
+    let startIdx = -1;
+    if (firstBrace !== -1 && (firstBracket === -1 || firstBrace < firstBracket)) startIdx = firstBrace;
+    else if (firstBracket !== -1) startIdx = firstBracket;
+    if (startIdx > 0) clean = clean.slice(startIdx);
+    const lastBrace = clean.lastIndexOf('}');
+    const lastBracket = clean.lastIndexOf(']');
+    const endIdx = Math.max(lastBrace, lastBracket);
+    if (endIdx !== -1) clean = clean.slice(0, endIdx + 1);
     const parsed = JSON.parse(clean);
     currentOutput = parsed;
     renderOutput(parsed, isMonth, title);
